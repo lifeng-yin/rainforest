@@ -1,4 +1,4 @@
-ghjimport g4p_controls.*;
+import g4p_controls.*;
 int money = 0;
 
 boolean home = true;
