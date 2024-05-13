@@ -37,12 +37,14 @@ public void ProfileButton_click(GImageButton source, GEvent event) { //_CODE_:Pr
 } //_CODE_:ProfileButton:415454:
 
 public void RFSButton_clicked(GButton source, GEvent event) { //_CODE_:RFSButton:727323:
-  rain_forest_supreme = false;
+  rain_forest_supreme = true;
+  invisible_controls();
+  RFSButton.setVisible(false);
   println("Upgraded to supreme");
 } //_CODE_:RFSButton:727323:
 
 public void imgButton1_click1(GImageButton source, GEvent event) { //_CODE_:imgButton1:900822:
-  println("imgButton1 - GImageButton >> GEvent." + event + " @ " + millis());
+  //RainForest logo picture
 } //_CODE_:imgButton1:900822:
 
 public void supreme_deals_button_click1(GButton source, GEvent event) { //_CODE_:supreme_deals_button:437597:

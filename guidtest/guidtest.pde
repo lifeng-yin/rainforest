@@ -18,12 +18,11 @@ void setup() {
 
 void draw() {
   background(220);
+  invisible_controls();
   stroke(0);
   line(0, 100, 800, 100);
   
-  textSize(45);
-  fill(60, 60, 60);
-  text("Check out our latest deals today!", 105, 150); 
+
   //println(Shop_button.getCX());
   
 }
