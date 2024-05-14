@@ -125,3 +125,132 @@ GButton supreme_deals_button;
 GButton Shop_button; 
 GImageButton dollar_button; 
 GButton sales_button; 
+
+//SHOP PAGE
+
+
+Product[] productsData = {
+  new Product(1, "T-Shirt", "Comfortable cotton t-shirt", 20),
+  new Product(2, "Jeans", "Classic denim jeans", 30),
+  new Product(3, "Sneakers", "Stylish sneakers for everyday wear", 50)
+};
+
+Product selectedProduct = null;
+
+void setup() {
+  size(600, 400); 
+  textAlign(LEFT, CENTER);
+}
+
+void draw() {
+  background(255); 
+  displayHeader(); 
+  displayProducts(); 
+}
+
+void displayHeader() {
+ //Header
+  fill(0);
+  textSize(24);
+  text("Rainforest", 250, 30);
+
+  fill(100, 200, 100); // Green color
+  rect(20, 10, 80, 30); // Home button rectangle
+  fill(255);
+  textSize(16);
+  text("Home", 60, 25);
+
+  //shopping cart button
+  fill(100, 200, 100); // Green color
+  rect(width - 110, 10, 90, 30); 
+  fill(255);
+  textSize(16);
+  text("Cart", width - 65, 25);
+}
+
+void displayProducts() {
+  for (int i = 0; i < productsData.length; i++) {
+    Product product = productsData[i];
+    float x = 50 + i * 180;
+    float y = 100;
+
+    //product box
+    fill(240);
+    rect(x, y, 150, 120);
+
+    //product name
+    fill(0);
+    textSize(16);
+    text(product.getName(), x + 10, y + 20);
+
+    //product description
+    textSize(12);
+    text(product.getDescription(), x + 10, y + 40, 130, 60);
+
+    //product price
+    textSize(14);
+    text("$" + product.getPrice(), x + 10, y + 110);
+
+    //"Add to Cart" button
+    fill(100, 200, 100); // Green color
+    rect(x + 10, y + 80, 130, 30); 
+    fill(255);
+    textSize(14);
+    text("Add to Cart", x + 30, y + 90);
+  }
+}
+
+void mousePressed() {
+  //Checks if "Add to Cart" button is clicked
+  for (int i = 0; i < productsData.length; i++) {
+    float x = 50 + i * 180;
+    float y = 100;
+
+    if (mouseX > x + 10 && mouseX < x + 140 && mouseY > y + 80 && mouseY < y + 110) {
+      selectedProduct = productsData[i];
+      addToCart(selectedProduct);
+    }
+  }
+
+  if (mouseX > 20 && mouseX < 100 && mouseY > 10 && mouseY < 40) {
+    // Implement home button functionality (e.g., navigate to home page)
+    println("Home button clicked");
+  }
+
+  if (mouseX > width - 110 && mouseX < width - 20 && mouseY > 10 && mouseY < 40) {
+    // Implement shopping cart button functionality (e.g., view cart)
+    println("Shopping cart button clicked");
+  }
+}
+
+void addToCart(Product product) {
+  if (product != null) {
+    println("Added " + product.getName() + " to cart!");
+  }
+}
+
+class Product {
+  int id;
+  String name;
+  String description;
+  int price;
+
+  Product(int id, String name, String description, int price) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.price = price;
+  }
+
+  String getName() {
+    return name;
+  }
+
+  String getDescription() {
+    return description;
+  }
+
+  int getPrice() {
+    return price;
+  }
+}
