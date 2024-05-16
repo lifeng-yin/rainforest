@@ -62,6 +62,7 @@ public void Shop_click1(GButton source, GEvent event) { //_CODE_:Shop_button:327
   sales = false;
   rain_forest_supreme_deals = false;
   println("shop pressed");
+  println( Shop_click1.
 } //_CODE_:Shop_button:327819:
 
 public void dollar_button_click1(GImageButton source, GEvent event) { //_CODE_:dollar_button:718026:
@@ -112,6 +113,11 @@ public void createGUI(){
   sales_button.setText("Sales");
   sales_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   sales_button.addEventHandler(this, "sales_button_click1");
+  
+  //hi_button = new GButton(this, 500, 500, 150, 85);
+  //hi_button.setText("hello world");
+  //hi_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  //hi_button.addEventHandler(this, "hi");
 }
 
 // Variable declarations 
@@ -125,3 +131,6 @@ GButton supreme_deals_button;
 GButton Shop_button; 
 GImageButton dollar_button; 
 GButton sales_button; 
+
+
+//GButton hi_button; 

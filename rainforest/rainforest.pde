@@ -1,6 +1,14 @@
 import g4p_controls.*;
 int money = 0;
 
+Product[] productsData = {
+  new Product(1, "T-Shirt", "Comfortable cotton t-shirt", 20),
+  new Product(2, "Jeans", "Classic denim jeans", 30),
+  new Product(3, "Sneakers", "Stylish sneakers for everyday wear", 50)
+}
+
+Product selectedProduct = null;
+
 boolean home = true;
 boolean cart = false;
 boolean shop = false;
