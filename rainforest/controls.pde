@@ -44,7 +44,7 @@ void invisible_controls() {
         text(p.name, 20, 170 + 50 * i);
         text(String.format("$%.2f", p.price), 150, 170 + 50 * i);
         
-        text(String.format("x%d", p.quantity), 300, 170 + 50 * i);
+        //text(String.format("x%d", p.quantity), 300, 170 + 50 * i);
         total += p.price;
       }
     }
@@ -52,6 +52,10 @@ void invisible_controls() {
     
     
     text(String.format("Total: $%.2f", total), 50, 550);
+  }
+  
+  if (shop == true) {
+    displayProducts();
   }
 }
   

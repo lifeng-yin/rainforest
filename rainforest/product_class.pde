@@ -11,6 +11,7 @@ class Product {
     this.price = price;
   }
 
+
   String getName() {
     return name;
   }
@@ -22,19 +23,22 @@ class Product {
   int getPrice() {
     return price;
   }
-}  
-
-void addToCart(Product product) {
-  if (product != null) {
-    println("Added " + product.getName() + " to cart!");
-  }
+  
+  
 }
 
 void displayProducts() {
+  float x = 50;
+  float y = 125;
   for (int i = 0; i < productsData.length; i++) {
     Product product = productsData[i];
-    float x = 50 + i * 180;
-    float y = 100;
+    //float x = 50 + i * 180;
+    
+    //println(i%3);
+    if (i!= 0&&i%4 == 0){
+      x = 50;
+      y += 150;
+    }
 
     //product box
     fill(240);
@@ -52,12 +56,29 @@ void displayProducts() {
     //product price
     textSize(14);
     text("$" + product.getPrice(), x + 10, y + 110);
+    
+    //GButton hi_button; 
+    //hi_button = new GButton(this, x+85, y+85, 60, 30);
+    //hi_button.setText("Purchase");
+    //hi_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+    //hi_button.addEventHandler(this, "hi");
+    
+    
+    
+    
+    
+    
+    
+    
+    x += 180;
+    
 
     //"Add to Cart" button
-    fill(100, 200, 100); // Green color
-    rect(x + 10, y + 80, 130, 30); 
-    fill(255);
-    textSize(14);
-    text("Add to Cart", x + 30, y + 90);
+    //fill(100, 200, 100); // Green color
+    //rect(x + 10, y + 80, 130, 30);
+    //fill(255);
+    //textSize(14);
+    //text("Add to Cart", x + 30, y + 90);
   }
+  
 }
