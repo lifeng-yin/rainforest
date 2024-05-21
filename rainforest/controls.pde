@@ -59,3 +59,8 @@ void invisible_controls() {
   }
 }
   
+void mouseDragged() {
+  if (shop == true) {
+    scrollbar.mouseDragged();
+  }
+}
