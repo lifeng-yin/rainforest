@@ -45,7 +45,7 @@ void invisible_controls() {
         text(p.name, 20, 170 + 50 * p.id);
         text(String.format("$%d", p.price), 150, 170 + 50 * p.id);
         
-        //text(String.format("x%d", p.quantity), 300, 170 + 50 * i);
+        text(String.format("x%d", p.quantity), 300, 170 + 50 * p.id);
         total += p.price;
       }
       
