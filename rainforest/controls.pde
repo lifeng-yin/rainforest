@@ -8,6 +8,7 @@ void invisible_controls() {
     supreme_deals_button.setVisible(true);
     sales_button.setVisible(true);
     dollar_button.setVisible(true);
+    checkoutButton.setVisible(false);
     if (rain_forest_supreme == false){
       RFSButton.setVisible(true);
     }
@@ -43,18 +44,24 @@ void invisible_controls() {
       for (Product p: productsInCart ) {
         textSize(20);
         text(p.name, 20, 170 + 50 * p.id);
-        text(String.format("$%d", p.price), 150, 170 + 50 * p.id);
+        text(String.format("$%.2f", p.price), 150, 170 + 50 * p.id);
         
         text(String.format("x%d", p.quantity), 300, 170 + 50 * p.id);
-        total += p.price;
+        total += p.price * p.quantity;
       }
       
       text(String.format("Total: $%.2f", total), 50, 550);
     }
-    
-    
-    
-    
+    checkoutButton.setVisible(true);
+  }
+  
+  else if (checkout == true) {
+    checkoutButton.setVisible(false);
+    fill(0);
+    textSize(40);
+    text(String.format("You have bought %.2f of items.", total), 100, 200);
+    money -= total;
+    text(String.format("Your new balance is %.2f", total), 100, 300);
   }
   
   else if (shop == true) {

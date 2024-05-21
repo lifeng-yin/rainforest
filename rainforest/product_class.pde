@@ -2,12 +2,12 @@ class Product {
   int id;
   String name;
   String description;
-  int price;
+  float price;
   int x;
   int y;
   int quantity;
 
-  Product(int id, String name, String description, int price) {
+  Product(int id, String name, String description, float price) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -51,7 +51,6 @@ void displayProducts() {
     rect(product.x+75, newY + 85, 70, 30, 5);
     fill(255);
     text("Purchase", product.x+85, newY + 105);
-
   }
 
 }

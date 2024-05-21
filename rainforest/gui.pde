@@ -60,6 +60,7 @@ public void Shop_click1(GButton source, GEvent event) { //_CODE_:Shop_button:327
   cart = false;
   shop = true;
   sales = false;
+  checkout = false;
   rain_forest_supreme_deals = false;
   println("shop pressed");
   //println( Shop_button.
@@ -74,9 +75,18 @@ public void sales_button_click1(GButton source, GEvent event) { //_CODE_:sales_b
   home = false;
   cart = false;
   sales = true;
+  checkout = false;
   rain_forest_supreme_deals = false;
   println("Sales pressed");
 } //_CODE_:sales_button:865886:
+
+public void checkoutButtonClicked(GButton source, GEvent event) { //_CODE_:checkoutButton:842274:
+  println("checkoutButton - GButton >> GEvent." + event + " @ " + millis());
+  home = false;
+  cart = false;
+  sales = false;
+  checkout = true;
+} //_CODE_:checkoutButton:842274:
 
 
 
@@ -109,10 +119,14 @@ public void createGUI(){
   Shop_button.addEventHandler(this, "Shop_click1");
   dollar_button = new GImageButton(this, 676, 507, 123, 93, new String[] { "dollarimg.png", "dollarimg.png", "dollarimg.png" } );
   dollar_button.addEventHandler(this, "dollar_button_click1");
-  sales_button = new GButton(this, 325, 442, 150, 85);
+  sales_button = new GButton(this, 323, 442, 150, 85);
   sales_button.setText("Sales");
   sales_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   sales_button.addEventHandler(this, "sales_button_click1");
+  checkoutButton = new GButton(this, 667, 557, 80, 30);
+  checkoutButton.setText("Checkout");
+  checkoutButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  checkoutButton.addEventHandler(this, "checkoutButtonClicked");
 }
 
 // Variable declarations 
@@ -126,3 +140,4 @@ GButton supreme_deals_button;
 GButton Shop_button; 
 GImageButton dollar_button; 
 GButton sales_button; 
+GButton checkoutButton; 
