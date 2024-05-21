@@ -1,4 +1,6 @@
+//the product class
 class Product {
+  //fields
   int id;
   String name;
   String description;
@@ -6,6 +8,7 @@ class Product {
   int x;
   int y;
 
+  //constructurs
   Product(int id, String name, String description, int price) {
     this.id = id;
     this.name = name;
@@ -17,10 +20,11 @@ class Product {
   }
 }
 
+//methods
 void displayProducts() {
   scrollbar.draw();
 
-  
+  //prints all products
   for (int i = 0; i < productsData.length; i++) {
     Product product = productsData[i];
     
@@ -52,10 +56,11 @@ void displayProducts() {
   }
 }
 
+//displays the sales
 void displaySaleProducts() {
   scrollbar.draw();
 
-  
+  //find cheap products
   for (int i = 0; i < (productsData.length)/3; i++) {
     Product product = productsData[i*2];
     
@@ -88,5 +93,4 @@ void displaySaleProducts() {
 }
 
 void mousePressed() {
-  println(mouseX, mouseY);
 }
