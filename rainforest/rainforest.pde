@@ -1,6 +1,10 @@
+//imports controls 
 import g4p_controls.*;
+
+//money variable
 int money = 0;
 
+//products
 Product[] productsData = {
   new Product(0, "T-Shirt", "Comfortable cotton t-shirt", 4.99),
   new Product(1, "Soccer Ball", "Classic ball for soccer", 19.99),
@@ -24,6 +28,7 @@ Product[] productsData = {
 
 Product selectedProduct = null;
 
+//different pages
 boolean home = true;
 boolean cart = false;
 boolean shop = false;
@@ -32,30 +37,29 @@ boolean rain_forest_supreme_deals = false;
 boolean rain_forest_supreme = false;
 boolean checkout = false;
 
+//scroll bar class
 Scrollbar scrollbar = new Scrollbar();
 
 ArrayList<Product> productsInCart = new ArrayList();
 
+//set up the code
 void setup() {
   size(800,600);
   createGUI();
 }
 
+//draws everything
 void draw() {
   background(220);
   
+  //toggles different pages depending on which page is true or false
   invisible_controls();
   
+  //draws the header
   noStroke();
   fill(220);
   rect(0, 0, width, 100);
   
   stroke(0);
   line(0, 100, 800, 100);
-  //Shop_button.moveTo(100, 50);
-  
-  
-
-  //println(Shop_button.getCX());
-  
 }
