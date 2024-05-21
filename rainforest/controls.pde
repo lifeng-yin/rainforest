@@ -27,11 +27,10 @@ void invisible_controls() {
   }
   
   if (cart == true) {
+    fill(0);
     textSize(50);
     text("My Cart", 50, 150);
     
-    textSize(20);
-    float total = 0;
     
     if (productsInCart.size() == 0) {
       textSize(25);
@@ -39,22 +38,26 @@ void invisible_controls() {
     }
    
     else {
-      for (int i = 0; i < productsInCart.size(); i++) {
-        Product p = productsInCart.get(i);
-        text(p.name, 20, 170 + 50 * i);
-        text(String.format("$%.2f", p.price), 150, 170 + 50 * i);
+      float total = 0;
+      
+      for (Product p: productsInCart ) {
+        textSize(20);
+        text(p.name, 20, 170 + 50 * p.id);
+        text(String.format("$%d", p.price), 150, 170 + 50 * p.id);
         
         //text(String.format("x%d", p.quantity), 300, 170 + 50 * i);
         total += p.price;
       }
+      
+      text(String.format("Total: $%.2f", total), 50, 550);
     }
     
     
     
-    text(String.format("Total: $%.2f", total), 50, 550);
+    
   }
   
-  if (shop == true) {
+  else if (shop == true) {
     displayProducts();
   }
 }

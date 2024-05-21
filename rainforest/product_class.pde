@@ -18,7 +18,6 @@ class Product {
 }
 
 void displayProducts() {
-  scrollbar.draw();
 
   
   for (int i = 0; i < productsData.length; i++) {
@@ -50,8 +49,31 @@ void displayProducts() {
     fill(255);
     text("Purchase", product.x+85, newY + 105);
   }
+  
+  if (selectedProduct != null) {
+    
+    
+    fill(255);
+    rect(50, 150, 700, 400);
+    
+    fill(0);
+    stroke(0);
+    textSize(40);
+    text("Buy " + selectedProduct.name + " for $" + selectedProduct.price + "?", 200, 200);
+    
+  }
+  else {
+    scrollbar.draw();
+  }
 }
 
 void mousePressed() {
-  println(mouseX, mouseY);
+  for (Product p: productsData) {
+    if (p.x + 75 < mouseX && mouseX < p.x + 145) {
+        float newY = p.y - scrollbar.yOffset;
+       if (newY + 85 < mouseY && mouseY < newY + 115) {
+         selectedProduct = p;
+       }
+    }
+  }
 }
