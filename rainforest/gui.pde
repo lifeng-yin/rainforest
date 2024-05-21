@@ -15,21 +15,19 @@
  */
 
 public void home_button_click(GImageButton source, GEvent event) { //_CODE_:home_button:581349:
-  home = true;
-  cart = false;
-  shop = false;
-  sales = false;
-  rain_forest_supreme_deals = false;
-  println("Home pressed");
+  currentPage = "home";
 } //_CODE_:home_button:581349:
 
 public void my_cart_button_click1(GImageButton source, GEvent event) { //_CODE_:my_cart_button:649753:
-  home = false;
-  cart = true;
-  shop = false;
-  sales = false;
-  rain_forest_supreme_deals = false;
-  println("Cart pressed");
+  currentPage = "cart";
+  
+  subtotal = 0;
+  // Calculate subtotal
+  for (Product p : productsInCart) {
+    subtotal += p.price * p.quantity;
+  }
+
+
 } //_CODE_:my_cart_button:649753:
 
 public void ProfileButton_click(GImageButton source, GEvent event) { //_CODE_:ProfileButton:415454:
@@ -37,48 +35,38 @@ public void ProfileButton_click(GImageButton source, GEvent event) { //_CODE_:Pr
 } //_CODE_:ProfileButton:415454:
 
 public void RFSButton_clicked(GButton source, GEvent event) { //_CODE_:RFSButton:727323:
-  rain_forest_supreme = true;
+  hasRainforestSupreme = true;
   invisible_controls();
   RFSButton.setVisible(false);
-  println("Upgraded to supreme");
+
 } //_CODE_:RFSButton:727323:
 
 public void imgButton1_click1(GImageButton source, GEvent event) { //_CODE_:imgButton1:900822:
-  //RainForest logo picture
+  // RainForest logo picture
+  currentPage = "home";
 } //_CODE_:imgButton1:900822:
 
+public void supreme_deals_button_click1(GButton source, GEvent event) { //_CODE_:supreme_deals_button:437597:
+  println("supreme_deals_button - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:supreme_deals_button:437597:
+
 public void Shop_click1(GButton source, GEvent event) { //_CODE_:Shop_button:327819:
-  home = false;
-  cart = false;
-  shop = true;
-  sales = false;
-  checkout = false;
-  rain_forest_supreme_deals = false;
+  currentPage = "shop";
   println("shop pressed");
   //println( Shop_button.
 } //_CODE_:Shop_button:327819:
 
 public void dollar_button_click1(GImageButton source, GEvent event) { //_CODE_:dollar_button:718026:
   money += 1000;
-  println("You have " + str(money));
 } //_CODE_:dollar_button:718026:
 
 public void sales_button_click1(GButton source, GEvent event) { //_CODE_:sales_button:865886:
-  home = false;
-  cart = false;
-  sales = true;
-  checkout = false;
-  rain_forest_supreme_deals = false;
-  println("Sales pressed");
+  currentPage = "sales";
 } //_CODE_:sales_button:865886:
 
-public void checkoutButtonClicked(GButton source, GEvent event) { //_CODE_:checkoutButton:842274:
-  println("checkoutButton - GButton >> GEvent." + event + " @ " + millis());
-  home = false;
-  cart = false;
-  sales = false;
-  checkout = true;
-} //_CODE_:checkoutButton:842274:
+public void shippingOptionsButtonClicked(GButton source, GEvent event) { //_CODE_:shippingOptionsButton:842274:
+  currentPage = "shippingOptions";
+} //_CODE_:shippingOptionsButton:842274:
 
 
 
@@ -101,20 +89,24 @@ public void createGUI(){
   RFSButton.addEventHandler(this, "RFSButton_clicked");
   imgButton1 = new GImageButton(this, 298, 0, 208, 99, new String[] { "rainforestlogopng.png", "rainforestlogopng.png", "rainforestlogopng.png" } );
   imgButton1.addEventHandler(this, "imgButton1_click1");
+  supreme_deals_button = new GButton(this, 325, 314, 150, 85);
+  supreme_deals_button.setText("RainForestSupreme deals");
+  supreme_deals_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  supreme_deals_button.addEventHandler(this, "supreme_deals_button_click1");
   Shop_button = new GButton(this, 325, 195, 150, 85);
   Shop_button.setText("SHOP");
   Shop_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   Shop_button.addEventHandler(this, "Shop_click1");
   dollar_button = new GImageButton(this, 676, 507, 123, 93, new String[] { "dollarimg.png", "dollarimg.png", "dollarimg.png" } );
   dollar_button.addEventHandler(this, "dollar_button_click1");
-  sales_button = new GButton(this, 325, 332, 150, 85);
+  sales_button = new GButton(this, 323, 442, 150, 85);
   sales_button.setText("Sales");
   sales_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   sales_button.addEventHandler(this, "sales_button_click1");
-  checkoutButton = new GButton(this, 667, 557, 80, 30);
-  checkoutButton.setText("Checkout");
-  checkoutButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
-  checkoutButton.addEventHandler(this, "checkoutButtonClicked");
+  shippingOptionsButton = new GButton(this, 667, 557, 80, 30);
+  shippingOptionsButton.setText("Next");
+  shippingOptionsButton.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  shippingOptionsButton.addEventHandler(this, "shippingOptionsButtonClicked");
 }
 
 // Variable declarations 
@@ -124,7 +116,8 @@ GImageButton my_cart_button;
 GImageButton ProfileButton; 
 GButton RFSButton; 
 GImageButton imgButton1; 
+GButton supreme_deals_button; 
 GButton Shop_button; 
 GImageButton dollar_button; 
 GButton sales_button; 
-GButton checkoutButton; 
+GButton shippingOptionsButton; 

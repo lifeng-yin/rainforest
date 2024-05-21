@@ -2,7 +2,13 @@
 import g4p_controls.*;
 
 //money variable
-int money = 0;
+float money = 0;
+float subtotal = 0;
+boolean hasRainforestSupreme = false;
+
+// current page
+// values can be "home", "cart", "shop", "sales", "checkout", "deals", "supreme"
+String currentPage = "home";
 
 //products
 Product[] productsData = {
@@ -26,25 +32,17 @@ Product[] productsData = {
   new Product(17, "Cologne", "2-Pack, Mens' everyday scent", 28.99)
 };
 
+// products in cart
+ArrayList<Product> productsInCart = new ArrayList();
+
 Product selectedProduct = null;
 
-//different pages
-boolean home = true;
-boolean cart = false;
-boolean shop = false;
-boolean sales = false;
-boolean rain_forest_supreme_deals = false;
-boolean rain_forest_supreme = false;
-boolean checkout = false;
-
-//scroll bar class
+//scrollbar class
 Scrollbar scrollbar = new Scrollbar();
-
-ArrayList<Product> productsInCart = new ArrayList();
 
 //set up the code
 void setup() {
-  size(800,600);
+  size(800, 600);
   createGUI();
 }
 

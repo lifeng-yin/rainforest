@@ -1,26 +1,18 @@
 //the invisible controls function, is responsible for toggling different pages
 void invisible_controls() {
   // home screen
-  if (home == true) {
-    textSize(45);
-    fill(60, 60, 60);
-    text("Check out our latest deals today!", 105, 150);
+  if (currentPage == "home") {
     Shop_button.setVisible(true);
     sales_button.setVisible(true);
     dollar_button.setVisible(true);
-    checkoutButton.setVisible(false);
-    if (rain_forest_supreme == false){
-      RFSButton.setVisible(true);
-    }
-    else {
-      textSize(25);
-      fill(60, 60, 60);
-      text("You are upgraded to", 10, 550); 
-      text("RainForest Supreme!", 10, 575); 
-    }
+    RFSButton.setVisible(false);
+    shippingOptionsButton.setVisible(false);
+
+    home();
   }
   //deactivates home screen
   else {
+    
     Shop_button.setVisible(false);
     sales_button.setVisible(false);
     dollar_button.setVisible(false);
@@ -28,55 +20,35 @@ void invisible_controls() {
   }
   
   //my cart screen
-  if (cart == true) {
-    textSize(50);
-    text("My Cart", 50, 150);
-    
-    textSize(20);
-    float total = 0;
-    
-    //prints items in cart if there is any
-    if (productsInCart.size() == 0) {
-      textSize(25);
-      text("There's nothing in your cart. Shop for some more items!", 50, 180);
-    }
-   
-    else {
-      for (int i = 0; i < productsInCart.size(); i++) {
-        Product p = productsInCart.get(i);
-        text(p.name, 20, 170 + 50 * i);
-        text(String.format("$%.2f", p.price), 150, 170 + 50 * i);
-        
-        text(String.format("x%d", p.quantity), 300, 170 + 50 * p.id);
-        total += p.price * p.quantity;
-      }
-    }
-    checkoutButton.setVisible(true);
+  if (currentPage == "cart") {
+    shippingOptionsButton.setVisible(true);
+    cart();
+  }
+  else {
+    shippingOptionsButton.setVisible(false);
   }
   
-  else if (checkout == true) {
-    checkoutButton.setVisible(false);
+  if (currentPage == "shippingOptions") {
     fill(0);
     textSize(40);
-    text(String.format("You have bought %.2f of items.", total), 100, 200);
-    money -= total;
-    text(String.format("Your new balance is %.2f", total), 100, 300);
+    text(String.format("You have bought %.2f of items.", subtotal * 1.13), 100, 200);
+    // text(String.format("Your new balance is %.2f", money), 100, 300);
   }
   
   //displays products if shop is true
-  if (shop == true) {
+  if (currentPage == "shop") {
     displayProducts();
   }
   
   //displays sales if sales is true
-  if (sales == true) {
+  if (currentPage == "sales") {
     displaySaleProducts();
   }
 }
 
   
 void mouseDragged() {
-  if (shop == true||sales == true) {
+  if (currentPage == "shop" || currentPage == "sales") {
     scrollbar.mouseDragged();
   }
 }

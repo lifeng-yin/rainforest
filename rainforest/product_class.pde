@@ -7,9 +7,10 @@ class Product {
   float price;
   int x;
   int y;
+  int quantity = 0;
 
   //constructurs
-  Product(int id, String name, String description, int price) {
+  Product(int id, String name, String description, float price) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -61,7 +62,7 @@ void displaySaleProducts() {
   scrollbar.draw();
 
   //find cheap products
-  for (int i = 0; i < (productsData.length)/3; i++) {
+  for (int i = 0; i < productsData.length/3; i++) {
     Product product = productsData[i*2];
     
     float newY = product.y - scrollbar.yOffset;
@@ -93,4 +94,18 @@ void displaySaleProducts() {
 }
 
 void mousePressed() {
+  for (Product p: productsData) {
+    if (p.x + 75 < mouseX && mouseX < p.x + 145) {
+      float newY = p.y - scrollbar.yOffset;
+      if (newY + 85 < mouseY && mouseY < newY + 115) {
+        if (productsInCart.contains(p)) {
+          productsInCart.get(productsInCart.indexOf(p)).quantity += 1;
+        }
+        else {
+          p.quantity = 1;
+          productsInCart.add(p);
+        }
+      }
+    }
+  }
 }
