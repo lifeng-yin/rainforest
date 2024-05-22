@@ -1,7 +1,7 @@
 void home() {
     textSize(45);
     fill(60, 60, 60);
-    text("Check out our latest deals today!", 105, 150);
+    text("Check out our latest deals today!", 105, 170);
 
     if (hasRainforestSupreme == false){
       RFSButton.setVisible(true);

@@ -51,7 +51,7 @@ void draw() {
   background(220);
   
   //toggles different pages depending on which page is true or false
-  invisible_controls();
+  page_controls();
   
   //draws the header
   noStroke();

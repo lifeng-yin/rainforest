@@ -19,6 +19,41 @@ class Product {
     this.x = 50 + (id % 4) * 180;
     this.y = 255 + 180 * floor(id / 4.0);
   }
+
+  void draw(float scrollbarOffset) {
+    float newY = this.y - scrollbarOffset;
+    //product box
+    fill(240);
+    rect(this.x, newY, 150, 120);
+
+    //product name
+    fill(0);
+    textSize(16);
+    text(this.name, this.x + 10, newY + 20);
+
+    //product description
+    textSize(12);
+    text(this.description, this.x + 10, newY + 40, 130, 60);
+
+    //product price
+    textSize(14);
+    text("$" + this.price, this.x + 10, newY + 110);
+    
+
+    // buy button fill, green if bought at least once, blue if not purchased
+    if (this.quantity >= 1) fill(0, 200, 100);
+    else fill(0, 140, 200);
+
+    // rounded rectangle for the button, slightly longer if bought more than 1 and quantity needs to be displayed
+    if (this.quantity >= 2) rect(this.x + 54, newY + 85, 92, 30, 5);
+    else rect(this.x + 68, newY + 85, 78, 30, 5);
+
+    fill(255);
+
+    if (this.quantity >= 2) text("Purchased x" + this.quantity, this.x+65, newY + 105);
+    else if (this.quantity == 1) text("Purchased", this.x+78, newY + 105);
+    else text("Purchase", this.x+82, newY + 105);
+  }
 }
 
 //methods
@@ -27,34 +62,8 @@ void displayProducts() {
 
   //prints all products
   for (int i = 0; i < productsData.length; i++) {
-    Product product = productsData[i];
-    
-    float newY = product.y - scrollbar.yOffset;
-
-    //product box
-    fill(240);
-    rect(product.x, newY, 150, 120);
-
-    //product name
-    fill(0);
-    textSize(16);
-    text(product.name, product.x + 10, newY + 20);
-
-    //product description
-    textSize(12);
-    text(product.description, product.x + 10, newY + 40, 130, 60);
-
-    //product price
-    textSize(14);
-    text("$" + product.price, product.x + 10, newY + 110);
-    
-
-    // buy button
-    fill(0, 140, 200);
-    rect(product.x+75, newY + 85, 70, 30, 5);
-    fill(255);
-    text("Purchase", product.x+85, newY + 105);
-  }
+    productsData[i].draw(scrollbar.yOffset);
+  }  
 }
 
 //displays the sales
@@ -64,48 +73,6 @@ void displaySaleProducts() {
   //find cheap products
   for (int i = 0; i < productsData.length/3; i++) {
     Product product = productsData[i*2];
-    
-    float newY = product.y - scrollbar.yOffset;
-
-    //product box
-    fill(240);
-    rect(product.x, newY, 150, 120);
-
-    //product name
-    fill(0);
-    textSize(16);
-    text(product.name, product.x + 10, newY + 20);
-
-    //product description
-    textSize(12);
-    text(product.description, product.x + 10, newY + 40, 130, 60);
-
-    //product price
-    textSize(14);
-    text("$" + product.price, product.x + 10, newY + 110);
-    
-
-    // buy button
-    fill(0, 140, 200);
-    rect(product.x+75, newY + 85, 70, 30, 5);
-    fill(255);
-    text("Purchase", product.x+85, newY + 105);
-  }
-}
-
-void mousePressed() {
-  for (Product p: productsData) {
-    if (p.x + 75 < mouseX && mouseX < p.x + 145) {
-      float newY = p.y - scrollbar.yOffset;
-      if (newY + 85 < mouseY && mouseY < newY + 115) {
-        if (productsInCart.contains(p)) {
-          productsInCart.get(productsInCart.indexOf(p)).quantity += 1;
-        }
-        else {
-          p.quantity = 1;
-          productsInCart.add(p);
-        }
-      }
-    }
+    product.draw(scrollbar.yOffset);
   }
 }

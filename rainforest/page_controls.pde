@@ -1,5 +1,5 @@
 //the invisible controls function, is responsible for toggling different pages
-void invisible_controls() {
+void page_controls() {
   // home screen
   if (currentPage == "home") {
     Shop_button.setVisible(true);
@@ -10,29 +10,28 @@ void invisible_controls() {
 
     home();
   }
-  //deactivates home screen
+
+  //deactivates home screen, hides all of the buttons
   else {
-    
     Shop_button.setVisible(false);
     sales_button.setVisible(false);
     dollar_button.setVisible(false);
     RFSButton.setVisible(false);
   }
   
-  //my cart screen
+  // My cart screen
   if (currentPage == "cart") {
-    shippingOptionsButton.setVisible(true);
+    // If there's more than 1 product bought, show shippingOptionsButton
+    if (productsInCart.size() > 0) shippingOptionsButton.setVisible(true);
     cart();
   }
   else {
     shippingOptionsButton.setVisible(false);
   }
   
+  // shipping options page
   if (currentPage == "shippingOptions") {
-    fill(0);
-    textSize(40);
-    text(String.format("You have bought %.2f of items.", subtotal * 1.13), 100, 200);
-    // text(String.format("Your new balance is %.2f", money), 100, 300);
+    shippingOptions();
   }
   
   //displays products if shop is true
@@ -43,12 +42,5 @@ void invisible_controls() {
   //displays sales if sales is true
   if (currentPage == "sales") {
     displaySaleProducts();
-  }
-}
-
-  
-void mouseDragged() {
-  if (currentPage == "shop" || currentPage == "sales") {
-    scrollbar.mouseDragged();
   }
 }

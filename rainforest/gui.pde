@@ -46,13 +46,8 @@ public void imgButton1_click1(GImageButton source, GEvent event) { //_CODE_:imgB
   currentPage = "home";
 } //_CODE_:imgButton1:900822:
 
-public void supreme_deals_button_click1(GButton source, GEvent event) { //_CODE_:supreme_deals_button:437597:
-  println("supreme_deals_button - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:supreme_deals_button:437597:
-
 public void Shop_click1(GButton source, GEvent event) { //_CODE_:Shop_button:327819:
   currentPage = "shop";
-  println("shop pressed");
   //println( Shop_button.
 } //_CODE_:Shop_button:327819:
 
@@ -89,17 +84,13 @@ public void createGUI(){
   RFSButton.addEventHandler(this, "RFSButton_clicked");
   imgButton1 = new GImageButton(this, 298, 0, 208, 99, new String[] { "rainforestlogopng.png", "rainforestlogopng.png", "rainforestlogopng.png" } );
   imgButton1.addEventHandler(this, "imgButton1_click1");
-  supreme_deals_button = new GButton(this, 325, 314, 150, 85);
-  supreme_deals_button.setText("RainForestSupreme deals");
-  supreme_deals_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
-  supreme_deals_button.addEventHandler(this, "supreme_deals_button_click1");
-  Shop_button = new GButton(this, 325, 195, 150, 85);
+  Shop_button = new GButton(this, 324, 252, 150, 85);
   Shop_button.setText("SHOP");
   Shop_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   Shop_button.addEventHandler(this, "Shop_click1");
   dollar_button = new GImageButton(this, 676, 507, 123, 93, new String[] { "dollarimg.png", "dollarimg.png", "dollarimg.png" } );
   dollar_button.addEventHandler(this, "dollar_button_click1");
-  sales_button = new GButton(this, 323, 442, 150, 85);
+  sales_button = new GButton(this, 325, 378, 150, 85);
   sales_button.setText("Sales");
   sales_button.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   sales_button.addEventHandler(this, "sales_button_click1");
@@ -116,7 +107,6 @@ GImageButton my_cart_button;
 GImageButton ProfileButton; 
 GButton RFSButton; 
 GImageButton imgButton1; 
-GButton supreme_deals_button; 
 GButton Shop_button; 
 GImageButton dollar_button; 
 GButton sales_button; 
