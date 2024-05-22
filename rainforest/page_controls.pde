@@ -6,10 +6,22 @@ void page_controls() {
     sales_button.setVisible(true);
     dollar_button.setVisible(true);
     RFSButton.setVisible(false);
-    shippingOptionsButton.setVisible(false);
-    shippingOptions.setVisible(false);
+    checkoutButton.setVisible(false);
+    
+    if (hasRainforestSupreme == false){
+      RFSButton.setVisible(true);
+    }
+    else {
+      textSize(25);
+      fill(60, 60, 60);
+      text("You are upgraded to", 10, 550); 
+      text("RainForest Supreme!", 10, 575); 
+    }
 
     home();
+    
+    
+
   }
 
   //deactivates home screen, hides all of the buttons
@@ -22,18 +34,17 @@ void page_controls() {
   
   // My cart screen
   if (currentPage == "cart") {
-    // If there's more than 1 product bought, show shippingOptionsButton
-    if (productsInCart.size() > 0) shippingOptionsButton.setVisible(true);
+    // If there's more than 1 product bought, show checkoutButton
+    if (productsInCart.size() > 0) checkoutButton.setVisible(true);
     cart();
   }
   else {
-    shippingOptionsButton.setVisible(false);
-    shippingOptions.setVisible(false);
+    checkoutButton.setVisible(false);
   }
   
   // shipping options page
   if (currentPage == "shippingOptions") {
-    shippingOptions();
+    checkout();
   }
   
   //displays products if shop is true

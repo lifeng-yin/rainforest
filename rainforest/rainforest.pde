@@ -2,7 +2,7 @@
 import g4p_controls.*;
 
 //money variable
-float money = 0;
+float money = 1000;
 float subtotal = 0;
 boolean hasRainforestSupreme = false;
 
