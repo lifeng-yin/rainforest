@@ -50,7 +50,7 @@ class Product {
 
     fill(255);
 
-    if (this.quantity >= 2) text("Purchased x" + this.quantity, this.x+65, newY + 105);
+    if (this.quantity >= 2) text("Purchased x" + this.quantity, this.x+63, newY + 105);
     else if (this.quantity == 1) text("Purchased", this.x+78, newY + 105);
     else text("Purchase", this.x+82, newY + 105);
   }

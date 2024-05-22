@@ -7,6 +7,7 @@ void page_controls() {
     dollar_button.setVisible(true);
     RFSButton.setVisible(false);
     shippingOptionsButton.setVisible(false);
+    shippingOptions.setVisible(false);
 
     home();
   }
@@ -27,6 +28,7 @@ void page_controls() {
   }
   else {
     shippingOptionsButton.setVisible(false);
+    shippingOptions.setVisible(false);
   }
   
   // shipping options page
